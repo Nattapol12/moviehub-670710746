@@ -27,6 +27,7 @@ export async function apiFetch(path, { method = 'GET', body, token } = {}) {
   return data;
 }
 
+
 // ---------- สมาชิก ----------
 export function register(email, password, displayName) {
   return apiFetch('/api/auth/register', { method: 'POST', body: { email, password, displayName } });
@@ -43,7 +44,12 @@ export function getReviews(movieId) {
   return apiFetch(`/api/movies/${movieId}/reviews`);                                   // ได้ { items }
 }
 export function postReview(movieId, text, token) {
-  return apiFetch(`/api/movies/${movieId}/reviews`, { method: 'POST', body: { text }, token });
+ return apiFetch(`/api/movies/${movieId}/reviews`, {
+  method: 'POST',
+  body: { text },
+  token,
+});
+
 }
 
 // ---------- คะแนน ----------
@@ -69,5 +75,5 @@ export async function getMovies() {
 }
 
 export async function getMovie(movieId) {
-  return apiFetch('/api/movies/${movieID}');
+  return apiFetch(`/api/movies/${movieId}`);   // ได้ { movie }
 }

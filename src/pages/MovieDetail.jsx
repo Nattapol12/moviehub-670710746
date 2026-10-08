@@ -5,8 +5,8 @@ import ReviewList from '../components/ReviewList';
 import MovieActions from '../components/MovieActions';
 import { getMovie } from '../api/backend';
 import { useAuth } from '../auth/AuthContext';
+import { getReviews, postReview } from '../api/backend';
 // TODO ขั้นที่ 3: import { getReviews, postReview } from '../api/backend';
-import { getReviews,postReview } from '../api/backend';
 
 function MovieDetail() {
   const { id } = useParams();                       // ได้เป็น string เสมอ (ตอนนี้คือรหัสของ TMDB)
@@ -15,7 +15,8 @@ function MovieDetail() {
   const [error, setError] = useState(null);
   const [reviews, setReviews] = useState([]);       // รีวิวจาก backend ของเรา (ไม่ใช่ TMDB)
   const { isLoggedIn } = useAuth();                 // TODO ขั้นที่ 3: ดึง token และ member มาด้วย
-  const {token,member}=useAuth();
+  const { token, member } = useAuth();
+  
 
   useEffect(() => {
     let ignore = false;
@@ -35,7 +36,6 @@ function MovieDetail() {
   // TODO ขั้นที่ 3 (ก): เปลี่ยน effect นี้ให้โหลดรีวิวจริงจาก backend
   //   getReviews(id) ได้ { items } แล้ว setReviews(items)  dependency คือ [id] เหมือนตัวบน
   //   (แยกจาก effect ของ TMDB เพราะคนละ server พังคนละแบบ ไม่ควรให้รีวิวล่มแล้วหน้าทั้งหน้าพัง)
-   // โหลดรีวิวของเรื่องนี้จาก backend ของเรา แยก effect จาก TMDB เพราะคนละ server
   useEffect(() => {
     let ignore = false;
     getReviews(id)
@@ -94,8 +94,10 @@ function MovieDetail() {
           <h1 className="text-2xl font-semibold text-slate-900 md:text-3xl">{movie.title}</h1>
           {movie.titleTh && <p className="mt-1 text-slate-500">{movie.titleTh}</p>}
           <p className="mt-2 text-sm text-slate-500">
-            {movie.year}{movie.genre && ` | ${movie.genre}`}{movie.rating != null && ` | ⭐ ${movie.rating}`}
-          </p>
+  {movie.year}
+  {movie.genre && ` | ${movie.genre}`}
+  {movie.rating != null && ` | ⭐ ${movie.rating}`}
+</p>
           <p className="mt-4 leading-relaxed text-slate-700">{movie.detail}</p>
 
           <MovieActions movieId={movie.id} />
