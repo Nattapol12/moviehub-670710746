@@ -7,10 +7,7 @@ const linkClass = ({ isActive }) =>
 function Navbar() {
   //const { isLoggedIn, member, logout } = useAuth();   // Navbar รู้สถานะ login ได้โดยไม่ต้องรับ props จากใคร
     const { isLoggedIn, isAdmin, member, logout } = useAuth();
- 
-          <NavLink to="/about" className={linkClass}>เกี่ยวกับ</NavLink>
-          {isAdmin && <NavLink to="/admin" className={linkClass}>หลังบ้าน</NavLink>}
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
   function handleLogout() {
     logout();
@@ -28,6 +25,8 @@ function Navbar() {
           <NavLink to="/movies" className={linkClass}>หนัง</NavLink>
           {isLoggedIn && <NavLink to="/me/wishlist" className={linkClass}>อยากดู</NavLink>}
           <NavLink to="/lab" className={linkClass}>API Lab</NavLink>
+          <NavLink to="/about" className={linkClass}>เกี่ยวกับ</NavLink>
+          {isAdmin && <NavLink to="/admin" className={linkClass}>หลังบ้าน</NavLink>}
           <NavLink to="/about" className={linkClass}>เกี่ยวกับ</NavLink>
         </div>
         <div className="ml-auto flex items-center gap-3 text-sm">
