@@ -134,4 +134,3 @@ function MovieActions({ movieId }) {
 }
 
 export default MovieActions;
-```
