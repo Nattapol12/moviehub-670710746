@@ -5,7 +5,11 @@ const linkClass = ({ isActive }) =>
   'text-sm transition ' + (isActive ? 'font-medium text-emerald-600' : 'text-slate-500 hover:text-emerald-600');
 
 function Navbar() {
-  const { isLoggedIn, member, logout } = useAuth();   // Navbar รู้สถานะ login ได้โดยไม่ต้องรับ props จากใคร
+  //const { isLoggedIn, member, logout } = useAuth();   // Navbar รู้สถานะ login ได้โดยไม่ต้องรับ props จากใคร
+    const { isLoggedIn, isAdmin, member, logout } = useAuth();
+ 
+          <NavLink to="/about" className={linkClass}>เกี่ยวกับ</NavLink>
+          {isAdmin && <NavLink to="/admin" className={linkClass}>หลังบ้าน</NavLink>}
   const navigate = useNavigate();
 
   function handleLogout() {
