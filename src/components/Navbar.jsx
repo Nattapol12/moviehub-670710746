@@ -27,7 +27,7 @@ function Navbar() {
           <NavLink to="/lab" className={linkClass}>API Lab</NavLink>
           <NavLink to="/about" className={linkClass}>เกี่ยวกับ</NavLink>
           {isAdmin && <NavLink to="/admin" className={linkClass}>หลังบ้าน</NavLink>}
-          <NavLink to="/about" className={linkClass}>เกี่ยวกับ</NavLink>
+          
         </div>
         <div className="ml-auto flex items-center gap-3 text-sm">
           {isLoggedIn ? (
